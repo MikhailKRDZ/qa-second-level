@@ -1,4 +1,4 @@
-package java.errorexceptions.university;
+package javatasks.errorexceptions.university;
 
 
 import java.util.function.BiFunction;

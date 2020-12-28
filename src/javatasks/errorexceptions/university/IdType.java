@@ -1,7 +1,9 @@
-package java.errorexceptions.university;
+package javatasks.errorexceptions.university;
 
-import java.errorexceptions.student.IFormIdType;
-import java.errorexceptions.student.subject.Subject;
+
+import javatasks.errorexceptions.student.IFormIdType;
+import javatasks.errorexceptions.student.subject.Subject;
+
 import java.util.ArrayList;
 import java.util.List;
 

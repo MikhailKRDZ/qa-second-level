@@ -1,4 +1,4 @@
-package java.errorexceptions.student.subject;
+package javatasks.errorexceptions.student.subject;
 
 
 public class Mark extends Subject {

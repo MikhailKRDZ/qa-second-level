@@ -1,7 +1,7 @@
-package java.errorexceptions.student;
+package javatasks.errorexceptions.student;
 
 
-import java.errorexceptions.student.subject.Subject;
+import javatasks.errorexceptions.student.subject.Subject;
 
 public interface ISubject {
     void addSubject(Subject subject);

@@ -1,13 +1,14 @@
-package java.errorexceptions.student;
+package javatasks.errorexceptions.student;
 
 
-import java.errorexceptions.customsexception.MarkOutOfBoundsException;
-import java.errorexceptions.student.subject.Mark;
-import java.errorexceptions.student.subject.Subject;
-import java.errorexceptions.university.FacultyType;
-import java.errorexceptions.university.GroupType;
-import java.errorexceptions.university.IdType;
-import java.errorexceptions.university.UniversityType;
+import javatasks.errorexceptions.customsexception.MarkOutOfBoundsException;
+import javatasks.errorexceptions.student.subject.Mark;
+import javatasks.errorexceptions.student.subject.Subject;
+import javatasks.errorexceptions.university.FacultyType;
+import javatasks.errorexceptions.university.GroupType;
+import javatasks.errorexceptions.university.IdType;
+import javatasks.errorexceptions.university.UniversityType;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

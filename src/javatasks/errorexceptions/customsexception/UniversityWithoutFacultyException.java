@@ -1,4 +1,4 @@
-package java.errorexceptions.customsexception;
+package javatasks.errorexceptions.customsexception;
 
 public class UniversityWithoutFacultyException extends CustomsExceptions {
 

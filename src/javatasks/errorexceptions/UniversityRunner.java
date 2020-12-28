@@ -1,15 +1,15 @@
-package java.errorexceptions;
+package javatasks.errorexceptions;
 
 
-import java.errorexceptions.customsexception.HandleException;
-import java.errorexceptions.student.data.Data;
-import java.errorexceptions.student.subject.SubjectType;
-import java.errorexceptions.university.*;
+import javatasks.errorexceptions.customsexception.HandleException;
+import javatasks.errorexceptions.student.data.Data;
+import javatasks.errorexceptions.student.subject.SubjectType;
+import javatasks.errorexceptions.university.*;
 
 public class UniversityRunner {
     public static void main(String[] args) {
         Data data = new Data();
-//        HandleException.handleExceptions();
+        HandleException.handleExceptions();
 
         University university = new University(data.personList);
 

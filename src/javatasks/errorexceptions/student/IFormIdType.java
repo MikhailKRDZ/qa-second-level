@@ -1,7 +1,8 @@
-package java.errorexceptions.student;
+package javatasks.errorexceptions.student;
 
 
-import java.errorexceptions.student.subject.Subject;
+import javatasks.errorexceptions.student.subject.Subject;
+
 import java.util.List;
 
 public interface IFormIdType {

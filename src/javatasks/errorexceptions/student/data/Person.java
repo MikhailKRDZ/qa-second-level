@@ -1,8 +1,9 @@
-package java.errorexceptions.student.data;
+package javatasks.errorexceptions.student.data;
 
 
-import java.errorexceptions.student.Student;
-import java.errorexceptions.student.subject.Mark;
+import javatasks.errorexceptions.student.Student;
+import javatasks.errorexceptions.student.subject.Mark;
+
 import java.util.List;
 
 public class Person extends Student {

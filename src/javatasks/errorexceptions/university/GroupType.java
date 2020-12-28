@@ -1,8 +1,9 @@
-package java.errorexceptions.university;
+package javatasks.errorexceptions.university;
 
 
-import java.errorexceptions.student.Student;
-import java.errorexceptions.student.subject.Subject;
+import javatasks.errorexceptions.student.Student;
+import javatasks.errorexceptions.student.subject.Subject;
+
 import java.util.ArrayList;
 import java.util.List;
 

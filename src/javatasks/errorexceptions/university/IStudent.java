@@ -1,7 +1,7 @@
-package java.errorexceptions.university;
+package javatasks.errorexceptions.university;
 
 
-import java.errorexceptions.student.Student;
+import javatasks.errorexceptions.student.Student;
 
 public interface IStudent {
     void addStudent(Student student);

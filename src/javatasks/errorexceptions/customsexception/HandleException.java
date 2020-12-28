@@ -1,10 +1,9 @@
-package java.errorexceptions.customsexception;
+package javatasks.errorexceptions.customsexception;
 
+import javatasks.errorexceptions.university.FacultyType;
+import javatasks.errorexceptions.university.GroupType;
+import javatasks.errorexceptions.university.IdType;
 
-
-import java.errorexceptions.university.FacultyType;
-import java.errorexceptions.university.GroupType;
-import java.errorexceptions.university.IdType;
 import java.util.ArrayList;
 
 public class HandleException {

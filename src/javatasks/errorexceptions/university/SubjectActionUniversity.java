@@ -1,8 +1,9 @@
-package java.errorexceptions.university;
+package javatasks.errorexceptions.university;
 
 
-import java.errorexceptions.student.subject.Subject;
-import java.errorexceptions.student.subject.SubjectType;
+import javatasks.errorexceptions.student.subject.Subject;
+import javatasks.errorexceptions.student.subject.SubjectType;
+
 import java.util.List;
 
 public class SubjectActionUniversity {

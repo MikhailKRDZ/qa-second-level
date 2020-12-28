@@ -1,12 +1,12 @@
-package java.errorexceptions.student.data;
+package javatasks.errorexceptions.student.data;
 
+import javatasks.errorexceptions.student.subject.Mark;
 
-import java.errorexceptions.student.subject.Mark;
 import java.util.Arrays;
 import java.util.List;
 
 public class Data {
-    public  List<Mark> subjects1 = Arrays.asList(
+    public List<Mark> subjects1 = Arrays.asList(
             new Mark("Высшая математика", 9),
             new Mark("Геометрия", 8),
 //            new Mark("Геометрия", 11),
@@ -20,13 +20,13 @@ public class Data {
             new Mark("Философия", 10),
             new Mark("Физкультура", 7)
     );
-    public  List<Mark> subjects3 = Arrays.asList(
+    public List<Mark> subjects3 = Arrays.asList(
             new Mark("Философия", 9),
             new Mark("Физика", 8),
             new Mark("Химия", 10),
             new Mark("Физкультура", 9)
     );
-    public  List<Mark> subjects4 = Arrays.asList(
+    public List<Mark> subjects4 = Arrays.asList(
             new Mark("Высшая математика", 9),
             new Mark("Геометрия", 8),
             new Mark("Химия", 10),
@@ -41,35 +41,35 @@ public class Data {
             new Mark("Геометрия", 8),
             new Mark("Физкультура", 10)
     );
-    public  List<Mark> subjects6 = Arrays.asList(
+    public List<Mark> subjects6 = Arrays.asList(
             new Mark("Высшая математика", 10),
             new Mark("Геометрия", 9),
             new Mark("Физкультура", 8)
     );
-    public  List<Mark> subjects7 = Arrays.asList(
+    public List<Mark> subjects7 = Arrays.asList(
             new Mark("Высшая математика", 10),
             new Mark("Химия", 10),
             new Mark("Физкультура", 10)
     );
-    public  List<Mark> subjects8 = Arrays.asList(
+    public List<Mark> subjects8 = Arrays.asList(
             new Mark("Высшая математика", 8),
 //            new Mark("Высшая математика", 8),
             new Mark("Геометрия", 8),
             new Mark("Физкультура", 8)
     );
-    public  List<Mark> subjects9 = Arrays.asList(
+    public List<Mark> subjects9 = Arrays.asList(
             new Mark("Высшая математика", 7),
             new Mark("Геометрия", 7),
             new Mark("Химия", 8),
             new Mark("Физкультура", 8)
     );
-    public  List<Mark> subjects10 = Arrays.asList(
+    public List<Mark> subjects10 = Arrays.asList(
             new Mark("Высшая математика", 7),
             new Mark("Геометрия", 8),
             new Mark("Химия", 9),
             new Mark("Физкультура", 10)
     );
-    public  List<Person> personList = Arrays.asList(
+    public List<Person> personList = Arrays.asList(
             new Person("BY1001", "Иванов A.A.", "БГПА", subjects1),
             new Person("BY1002", "Сидоров A.A.", "БГПА", subjects2),
 
