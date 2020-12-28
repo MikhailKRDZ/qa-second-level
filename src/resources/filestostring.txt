@@ -1,0 +1,40 @@
+ src
+  |---javatasks
+  |  |---errorexceptions
+  |  |  |---customsexception
+  |  |  |  01 CustomsExceptions.java
+  |  |  |  02 FacultyHasInsufficientGroupsException.java
+  |  |  |  03 GroupsWithoutStudentsException.java
+  |  |  |  04 HandleException.java
+  |  |  |  05 MarkOutOfBoundsException.java
+  |  |  |  06 NoSubjectsForTheStudent.java
+  |  |  |  07 UniversityWithoutFacultyException.java
+  |  |  |---student
+  |  |  |  |---data
+  |  |  |  |  01 Data.java
+  |  |  |  |  02 Person.java
+  |  |  |  01 IFormIdType.java
+  |  |  |  02 ISubject.java
+  |  |  |  03 Student.java
+  |  |  |  |---subject
+  |  |  |  |  01 Mark.java
+  |  |  |  |  02 Subject.java
+  |  |  |  |  03 SubjectType.java
+  |  |  |---university
+  |  |  |  01 FacultyType.java
+  |  |  |  02 GroupType.java
+  |  |  |  03 IdType.java
+  |  |  |  04 IShapeService.java
+  |  |  |  05 IStudent.java
+  |  |  |  06 SubjectActionUniversity.java
+  |  |  |  07 SubjectParamUniversity.java
+  |  |  |  08 University.java
+  |  |  |  09 UniversityType.java
+  |  |  01 UniversityRunner.java
+  |  |---iofundamentals
+  |  |  |---maintaskrecursion
+  |  |  |  01 CollectionFromTxtFile.java
+  |  |  |  02 FilesSaver.java
+  |  |  01 MainTaskRunnerRecursion.java
+  |---resources
+  |  01 filestostring.txt
