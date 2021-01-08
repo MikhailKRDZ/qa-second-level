@@ -1,7 +1,9 @@
 package errorexceptions.util;
 
 
+import errorexceptions.customsexception.FacultyHasInsufficientGroupsException;
 import errorexceptions.customsexception.MarkOutOfBoundsException;
+import errorexceptions.customsexception.UniversityWithoutFacultyException;
 import errorexceptions.data.SubjectType;
 import errorexceptions.university.*;
 
@@ -58,69 +60,16 @@ public class GeneratorData {
                 }
                 try {
                     faculty.addGroup(group);
-                } catch (IllegalArgumentException exception) {
+                } catch (FacultyHasInsufficientGroupsException exception) {
                     System.err.println(exception.getMessage());
                     j--;
                 }
             }
             try {
                 university.addFaculty(faculty);
-            } catch (IllegalArgumentException exceptions) {
+            } catch (UniversityWithoutFacultyException exceptions) {
                 System.err.println(exceptions.getMessage());
                 i--;
-            }
-        }
-        return university;
-    }
-
-    public static University generateRandomData(int numberFacultiesInUniversity, int numberGroupsInFaculty,
-                                                int numberStudentsInGroup, int numberSubjectsInStudent) {
-        University university = new University("БГПА");
-        for (int i = 0; i < numberFacultiesInUniversity; i++) {
-            int randomNum = ThreadLocalRandom.current().nextInt(0, FACULTY_NAMES.length);
-            Faculty faculty = new Faculty(FACULTY_NAMES[randomNum]);
-
-            for (int j = 0; j < numberGroupsInFaculty; j++) {
-                int randomGroup = ThreadLocalRandom.current().nextInt(0, GROUP_NAMES.length);
-                Group group = new Group(GROUP_NAMES[randomGroup]);
-
-
-                for (int k = 0; k < numberStudentsInGroup; k++) {
-                    int randomStudent = ThreadLocalRandom.current().nextInt(0, STUDENT_NAMES.length);
-                    Student student = new Student(STUDENT_NAMES[randomStudent]);
-
-                    for (int l = 0; l < numberSubjectsInStudent; l++) {
-                        int randomSubject = ThreadLocalRandom.current().nextInt(0, SUBJECT_NAMES.length);
-                        int randomSubjectsMark = ThreadLocalRandom.current().nextInt(1, 10);
-
-                        Subject subject = null;
-                        try {
-                            subject = new Subject(student.getName(), SUBJECT_NAMES[randomSubject].getSubjectRealName(), randomSubjectsMark);
-                        } catch (MarkOutOfBoundsException exceptions) {
-                            exceptions.printStackTrace();
-                        }
-                        try {
-                            student.addSubject(subject);
-                        } catch (IllegalArgumentException exception) {
-                            System.err.println(exception.getMessage());
-                        }
-                    }
-                    try {
-                        group.addStudent(student);
-                    } catch (IllegalArgumentException exceptions) {
-                        System.err.println(exceptions.getMessage());
-                    }
-                }
-                try {
-                    faculty.addGroup(group);
-                } catch (IllegalArgumentException exception) {
-                    System.err.println(exception.getMessage());
-                }
-            }
-            try {
-                university.addFaculty(faculty);
-            } catch (IllegalArgumentException exceptions) {
-                System.err.println(exceptions.getMessage());
             }
         }
         return university;

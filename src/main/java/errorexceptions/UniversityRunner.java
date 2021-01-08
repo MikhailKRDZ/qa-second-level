@@ -14,12 +14,8 @@ public class UniversityRunner {
 
     public static void main(String[] args) {
         try {
-            University university;
-            university = GeneratorData.generateRequiredData(3, 3,
-                    4, 5);
-
-            university = GeneratorData.generateRandomData(3, 4,
-                    6, 5);
+            University university = GeneratorData.generateRequiredData(3, 4,
+                    5, 6);
 
             Printer.printUniversityStructure(university);
             Printer.printAllSubjects(university);
@@ -39,7 +35,7 @@ public class UniversityRunner {
             Printer.printAllSubjects(student);
             Printer.printAverageStudent(student);
 
-        } catch (NullPointerException | CustomsExceptions | IllegalArgumentException e) {
+        } catch (CustomsExceptions e) {
             e.printStackTrace();
         }
     }
