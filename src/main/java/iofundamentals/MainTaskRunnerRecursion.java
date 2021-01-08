@@ -1,5 +1,6 @@
 package iofundamentals;
 
+
 import iofundamentals.maintaskrecursion.CollectionFromTxtFile;
 import iofundamentals.maintaskrecursion.FilesSaver;
 
@@ -18,8 +19,7 @@ public class MainTaskRunnerRecursion {
 
         String stringRootPath = args[0];
         File fileFromInputData = new File(stringRootPath);
-        String pathForOutputData = "src/main/java/resources/filestostring.txt";
-
+        String pathForOutputData = "D:/study/at/epam/QAonline/secondlevel/qa-second-level/src/main/java/resources/filestostring.txt";
         if (fileFromInputData.isDirectory()) {
             FilesSaver.cleanFile(pathForOutputData);
             visitAllDirsAndFiles(pathForOutputData, fileFromInputData, 0);
