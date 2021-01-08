@@ -1,6 +1,6 @@
-package errorexceptions.student.subject;
+package errorexceptions.data;
 
-public enum SubjectType  {
+public enum SubjectType {
 
     ADVANCED_MATHEMATICS("Высшая математика"),
     GEOMETRY("Геометрия"),
@@ -18,11 +18,10 @@ public enum SubjectType  {
         this.subjectsRealName = subject;
     }
 
-
     public static SubjectType getSubjectValueByRealName(String code) {
-        for (SubjectType subjectsRealName : SubjectType.values()) {
-            if (subjectsRealName.subjectsRealName.equals(code)) {
-                return subjectsRealName;
+        for (SubjectType subjectType : SubjectType.values()) {
+            if (subjectType.subjectsRealName.equals(code)) {
+                return subjectType;
             }
         }
         return null;
@@ -31,5 +30,4 @@ public enum SubjectType  {
     public String getSubjectRealName() {
         return subjectsRealName;
     }
-
 }
