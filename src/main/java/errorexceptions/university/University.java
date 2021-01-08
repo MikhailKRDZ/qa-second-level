@@ -1,81 +1,102 @@
 package errorexceptions.university;
 
-
-
-import errorexceptions.student.Student;
-import errorexceptions.student.data.Person;
-import errorexceptions.student.subject.Subject;
-import errorexceptions.student.subject.SubjectType;
+import java.lang.Error;
+import errorexceptions.customsexception.GroupsWithoutStudentsException;
+import errorexceptions.customsexception.NoSubjectsForTheStudent;
+import errorexceptions.customsexception.UniversityWithoutFacultyException;
+import errorexceptions.data.SubjectType;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class University implements IStudent {
-    private final ArrayList<Student> students = new ArrayList<>();
+public class University implements IUniversity {
+    private final String realUniversityName;
+    private final List<Faculty> facultyList;
 
-    public University(List<Person> personList) {
-        for (Person person : personList) {
-            addStudent(person);
-        }
+    public University() {
+        this(null);
     }
 
-    public List<Student> getStudents() {
-        return Collections.unmodifiableList(this.students);
+    public University(String universityName) {
+        this.realUniversityName = universityName;
+        this.facultyList = new ArrayList<>();
     }
 
-    public static double subjectUniversityGetAverage(UniversityType universityType, SubjectType subjectType) {
-        System.out.print("Университет: " + universityType.getRealUniversityName());
-        List<Subject> subjectList = universityType.getSubjectsList();
-        double result = 0;
-        if (subjectList.size() != 0) {
-            System.out.print(" Предметы " + subjectList.toString());
-            SubjectActionUniversity rectangleActionUniversity = new SubjectActionUniversity();
-            System.out.print("\n Предмет: " + subjectType.getSubjectRealName());
-            result = rectangleActionUniversity.action(SubjectParamUniversity.AVERAGE, subjectList, subjectType);
+    public void addFaculty(Faculty faculty) throws IllegalArgumentException {
+        for (Faculty addedFaculty : this.facultyList) {
+            if (addedFaculty.getName().equals(faculty.getName())) {
+                throw new IllegalArgumentException("wrong faculty" + faculty.getName());
+            }
         }
-        return result;
+        this.facultyList.add(faculty);
     }
 
-    public static double subjectFacultyGetAverage(FacultyType facultyType, SubjectType subjectType) {
-        System.out.print(" Факультет: " + facultyType.getRealFacultyName());
-        List<Subject> subjectList = facultyType.getSubjectsList();
-        double result = 0;
-        if (subjectList.size() != 0) {
-            System.out.print("\n Предметы: " + subjectList.toString());
-            SubjectActionUniversity rectangleActionUniversity = new SubjectActionUniversity();
-            System.out.print("\n Предмет: " + subjectType.getSubjectRealName());
-            result = rectangleActionUniversity.action(SubjectParamUniversity.AVERAGE, subjectList, subjectType);
-        }
-        return result;
+    public String getRealUniversityName() {
+        return realUniversityName;
     }
 
-    public static double subjectGroupGetAverage(GroupType groupType, SubjectType subjectType) {
-        System.out.print(" Группа: " + groupType.toString());
-        List<Subject> subjectList = groupType.getSubjectsList();
-        double result = 0;
-        if (subjectList.size() != 0) {
-            System.out.print("\n Предметы: " + subjectList.toString());
-            SubjectActionUniversity rectangleActionUniversity = new SubjectActionUniversity();
-            System.out.print(" \n Предмет: " + subjectType.getSubjectRealName());
-            result = rectangleActionUniversity.action(SubjectParamUniversity.AVERAGE, subjectList, subjectType);
+    public List<Faculty> getFacultyList() throws UniversityWithoutFacultyException {
+        if (this.facultyList.isEmpty()) {
+            throw new UniversityWithoutFacultyException(" No Faculties in University");
         }
-        return result;
+        return this.facultyList;
     }
 
-    public static double idSubjectsGetAverage(IdType idType) {
-        System.out.print(" Id: " + idType + ", personId: " + idType.getStudentsIdTypeRealName() + ", Предметы: ");
-        List<Subject> subjectList = idType.getIdSubjectsList();
-        double result = 0;
-        if (subjectList.size() != 0) {
-            SubjectActionUniversity rectangleActionUniversity = new SubjectActionUniversity();
-            result = rectangleActionUniversity.action(SubjectParamUniversity.AVERAGE, subjectList);
+    public Faculty getFaculty(String reqFacultyName) throws UniversityWithoutFacultyException, IllegalArgumentException {
+        if (this.facultyList.isEmpty()) {
+            throw new UniversityWithoutFacultyException(" No Faculties in University");
         }
-        return result;
+        for (Faculty faculty : this.facultyList) {
+            if (faculty.getName().equals(reqFacultyName)) {
+                return faculty;
+            }
+        }
+        throw new IllegalArgumentException("No faculty in University " + this.realUniversityName + "  with this Name" + reqFacultyName);
     }
 
     @Override
-    public void addStudent(Student student) {
-        this.students.add(student);
+    public ArrayList<Subject> getSubjectList() throws NoSubjectsForTheStudent, GroupsWithoutStudentsException {
+        ArrayList<Subject> subjectArrayList;
+        subjectArrayList = new ArrayList<>();
+        for (Faculty faculty : this.facultyList) {
+            for (Group group : faculty.getGroupList()) {
+                for (Student student : group.getStudentList()) {
+                    subjectArrayList.addAll(student.getSubjectList());
+                }
+            }
+        }
+        return subjectArrayList;
+    }
+
+    @Override
+    public double getAverage() throws NoSubjectsForTheStudent, GroupsWithoutStudentsException {
+        int sum = 0;
+        int number = 0;
+        for (Subject subject : getSubjectList()) {
+            sum = sum + subject.getMark();
+            number = number + 1;
+        }
+        return (double) sum / number;
+    }
+
+    @Override
+    public double getAverage(SubjectType subjectType) throws NoSubjectsForTheStudent, GroupsWithoutStudentsException {
+        int sum = 0;
+        int number = 0;
+        for (Subject subject : getSubjectList()) {
+            if (subject.getName().equals(subjectType.getSubjectRealName())) {
+                sum = sum + subject.getMark();
+                number = number + 1;
+            }
+        }
+        return (double) sum / number;
+    }
+
+    @Override
+    public String toString() {
+        return "University{" +
+                "realUniversityName='" + realUniversityName + '\'' +
+                ", facultyList=" + facultyList +
+                '}';
     }
 }

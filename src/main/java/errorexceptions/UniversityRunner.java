@@ -1,24 +1,48 @@
 package errorexceptions;
 
 
-import errorexceptions.customsexception.HandleException;
-import errorexceptions.student.data.Data;
-import errorexceptions.student.subject.SubjectType;
-import errorexceptions.university.*;
+import errorexceptions.customsexception.CustomsExceptions;
+import errorexceptions.data.SubjectType;
+import errorexceptions.university.Faculty;
+import errorexceptions.university.Group;
+import errorexceptions.university.Student;
+import errorexceptions.university.University;
+import errorexceptions.util.GeneratorData;
+import errorexceptions.util.Printer;
 
 public class UniversityRunner {
+
     public static void main(String[] args) {
-        Data data = new Data();
-        HandleException.handleExceptions();
+        try {
+            University university;
+            university = GeneratorData.generateRequiredData(3, 3,
+                    4, 5);
 
-        University university = new University(data.personList);
+            university = GeneratorData.generateRandomData(3, 4,
+                    6, 5);
 
-        System.out.println(university.getStudents().toString());
-        System.out.println("\n Average :" + University.subjectUniversityGetAverage(UniversityType.BSPA, SubjectType.CHEMISTRY) + "\n");
-        System.out.println("\n Average :" + University.
-                subjectFacultyGetAverage(FacultyType.MMF, SubjectType.CHEMISTRY) + "\n");
-        System.out.println("\n Average :" + University.
-                subjectGroupGetAverage(GroupType.G_625, SubjectType.ADVANCED_MATHEMATICS) + "\n");
-        System.out.println("\n Average :" + University.idSubjectsGetAverage(IdType.ID_3) + "\n");
+            Printer.printUniversityStructure(university);
+            Printer.printAllSubjects(university);
+
+            SubjectType subjectType = SubjectType.CHEMISTRY;
+            Printer.printAverageUniversity(university, subjectType);
+
+            Faculty faculty = university.getFaculty("ММФ");
+            Printer.printAllSubjects(faculty);
+            Printer.printAverageFaculty(faculty, subjectType);
+
+            Group group = university.getFaculty("ММФ").getGroupList().get(1);
+            Printer.printAllSubjects(group);
+            Printer.printAverageGroup(group, subjectType);
+
+            Student student = university.getFaculty("ММФ").getGroupList().get(2).getStudentList().get(2);
+            Printer.printAllSubjects(student);
+            Printer.printAverageStudent(student);
+
+        } catch (NullPointerException | CustomsExceptions | IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
+
+
 }
