@@ -30,7 +30,7 @@ public class Subject {
     }
 
     public String getPersonId() {
-        return personId;
+        return this.personId;
     }
 
     @Override

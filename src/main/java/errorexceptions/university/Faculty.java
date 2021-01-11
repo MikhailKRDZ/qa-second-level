@@ -24,7 +24,7 @@ public class Faculty implements IUniversity {
     public void addGroup(Group group) throws IllegalArgumentException {
         for (Group addedGroup : this.groupList) {
             if (addedGroup.getName().equals(group.getName())) {
-                throw new IllegalArgumentException("wrong group " + group.getName());
+                throw new IllegalArgumentException("group with this name exist, group " + group.getName());
             }
         }
         this.groupList.add(group);
@@ -34,7 +34,7 @@ public class Faculty implements IUniversity {
         if (this.groupList.isEmpty()) {
             throw new FacultyHasInsufficientGroupsException(" No Groups in Faculty " + this.realFacultyName);
         }
-        for (Group group : this.groupList) {
+        for (Group group : getGroupList()) {
             if (group.getName().equals(groupName)) {
                 return group;
             }
@@ -44,24 +44,19 @@ public class Faculty implements IUniversity {
 
     @Override
     public ArrayList<Subject> getSubjectList() throws NoSubjectsForTheStudent, GroupsWithoutStudentsException {
-        ArrayList<Subject> subjectArrayList ;
-        subjectArrayList = new ArrayList<>();
+        ArrayList<Subject> subjectArrayList = new ArrayList<>();
         for (Group group : this.groupList) {
-            for (Student student : group.getStudentList()) {
-                subjectArrayList.addAll(student.getSubjectList());
-            }
+                subjectArrayList.addAll(group.getSubjectList());
         }
         return subjectArrayList;
     }
 
     public double getAverage() throws NoSubjectsForTheStudent, GroupsWithoutStudentsException {
         int sum = 0;
-        int number = 0;
         for (Subject subject : getSubjectList()) {
                 sum = sum + subject.getMark();
-                number = number + 1;
             }
-        return (double) sum / number;
+        return (double) sum / getSubjectList().size();
     }
 
     public String getName() {
@@ -75,14 +70,14 @@ public class Faculty implements IUniversity {
     @Override
     public double getAverage(SubjectType subjectType) throws NoSubjectsForTheStudent, GroupsWithoutStudentsException {
         int sum = 0;
-        int number = 0;
+        int subjectNumber = 0;
                 for (Subject subject : getSubjectList()) {
                     if (subject.getName().equals(subjectType.getSubjectRealName())) {
                         sum = sum + subject.getMark();
-                        number = number + 1;
+                        subjectNumber = subjectNumber + 1;
                     }
                 }
-        return (double) sum / number;
+        return (double) sum / subjectNumber;
     }
 
     @Override

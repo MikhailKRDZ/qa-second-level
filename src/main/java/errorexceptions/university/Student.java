@@ -22,7 +22,7 @@ public class Student implements IUniversity {
     public void addSubject(Subject subject) throws IllegalArgumentException {
         for (Subject subject1 : this.subjectList) {
             if (subject1.getName().equals(subject.getName())) {
-                throw new IllegalArgumentException("wrong Subject " + this.realIdTypeName);
+                throw new IllegalArgumentException("subject with this name exist, subject " + subject.getName());
             }
         }
         this.subjectList.add(subject);
@@ -34,14 +34,12 @@ public class Student implements IUniversity {
         return this.subjectList;
     }
 
-    public double getAverage() {
+    public double getAverage() throws NoSubjectsForTheStudent {
         int sum = 0;
-        int number = 0;
-        for (Subject subject : this.subjectList) {
+        for (Subject subject : getSubjectList()) {
             sum = sum + subject.getMark();
-            number = number + 1;
         }
-        return (double) sum / number;
+        return (double) sum / getSubjectList().size();
     }
 
     @Override

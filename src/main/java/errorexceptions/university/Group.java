@@ -24,7 +24,7 @@ public class Group implements IUniversity {
     public void addStudent(Student student) throws IllegalArgumentException {
         for (Student addedStudent : this.studentList) {
             if (addedStudent.getName().equals(student.getName())) {
-                throw new IllegalArgumentException("wrong student: " + student.getName());
+                throw new IllegalArgumentException("student with this name exist, student: " + student.getName());
             }
         }
         this.studentList.add(student);
@@ -54,36 +54,33 @@ public class Group implements IUniversity {
     }
 
     @Override
-    public ArrayList<Subject> getSubjectList() throws NoSubjectsForTheStudent {
-        ArrayList<Subject> subjectArrayList;
-        subjectArrayList = new ArrayList<>();
-        for (Student student : this.studentList) {
+    public ArrayList<Subject> getSubjectList() throws NoSubjectsForTheStudent, GroupsWithoutStudentsException {
+        ArrayList<Subject> subjectArrayList = new ArrayList<>();
+        for (Student student : getStudentList()) {
             subjectArrayList.addAll(student.getSubjectList());
         }
         return subjectArrayList;
     }
 
-    public double getAverage() throws NoSubjectsForTheStudent {
+    public double getAverage() throws NoSubjectsForTheStudent, GroupsWithoutStudentsException {
         int sum = 0;
-        int number = 0;
         for (Subject subject : getSubjectList()) {
                 sum = sum + subject.getMark();
-                number = number + 1;
         }
-        return (double) sum / number;
+        return (double) sum / getSubjectList().size();
     }
 
     @Override
-    public double getAverage(SubjectType subjectType) throws NoSubjectsForTheStudent {
+    public double getAverage(SubjectType subjectType) throws NoSubjectsForTheStudent, GroupsWithoutStudentsException {
         int sum = 0;
-        int number = 0;
+        int subjectNumber = 0;
             for (Subject subject : getSubjectList()) {
                 if (subject.getName().equals(subjectType.getSubjectRealName())) {
                     sum = sum + subject.getMark();
-                    number = number + 1;
+                    subjectNumber++;
                 }
             }
-        return (double) sum / number;
+        return (double) sum / subjectNumber;
     }
 
     @Override

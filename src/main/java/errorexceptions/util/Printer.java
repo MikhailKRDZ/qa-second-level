@@ -24,7 +24,8 @@ public class Printer {
     }
 
     public static void printAverageUniversity(University university, SubjectType subjectType)
-            throws GroupsWithoutStudentsException, NoSubjectsForTheStudent, IllegalArgumentException {
+            throws GroupsWithoutStudentsException, NoSubjectsForTheStudent, IllegalArgumentException,
+            UniversityWithoutFacultyException {
         System.out.println("Средний балл Университета по предмету, " + subjectType.getSubjectRealName() + " : "
                 + university.getAverage(subjectType));
         System.out.println("------------------------------------------------------------------------------------");
@@ -38,20 +39,20 @@ public class Printer {
     }
 
     public static void printAverageGroup(Group group, SubjectType subjectType)
-            throws IllegalArgumentException, NoSubjectsForTheStudent {
+            throws IllegalArgumentException, NoSubjectsForTheStudent, GroupsWithoutStudentsException {
         System.out.println("Средний балл группы " + group.getName() + " по предмету, "
                 + subjectType.getSubjectRealName() + " : " + group.getAverage(subjectType));
         System.out.println("------------------------------------------------------------------------------------");
 
     }
 
-    public static void printAverageStudent(Student student) {
+    public static void printAverageStudent(Student student) throws NoSubjectsForTheStudent {
         System.out.println("Средний балл студента " + student.getName() + " : " + student.getAverage());
         System.out.println("------------------------------------------------------------------------------------");
     }
 
     public static void printAllSubjects(University university)
-            throws NoSubjectsForTheStudent, GroupsWithoutStudentsException {
+            throws NoSubjectsForTheStudent, GroupsWithoutStudentsException, UniversityWithoutFacultyException {
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("All university subjects");
         for (Subject subject : university.getSubjectList()) {
@@ -69,7 +70,7 @@ public class Printer {
         System.out.println("------------------------------------------------------------------------------------");
     }
 
-    public static void printAllSubjects(Group group) throws NoSubjectsForTheStudent {
+    public static void printAllSubjects(Group group) throws NoSubjectsForTheStudent, GroupsWithoutStudentsException {
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("All group subjects");
         for (Subject subject : group.getSubjectList()) {
