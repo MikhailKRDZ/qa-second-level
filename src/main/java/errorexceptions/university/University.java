@@ -1,5 +1,6 @@
 package errorexceptions.university;
 
+import java.lang.Error;
 import errorexceptions.customsexception.GroupsWithoutStudentsException;
 import errorexceptions.customsexception.NoSubjectsForTheStudent;
 import errorexceptions.customsexception.UniversityWithoutFacultyException;
@@ -21,10 +22,10 @@ public class University implements IUniversity {
         this.facultyList = new ArrayList<>();
     }
 
-    public void addFaculty(Faculty faculty) throws UniversityWithoutFacultyException {
+    public void addFaculty(Faculty faculty) throws IllegalArgumentException {
         for (Faculty addedFaculty : this.facultyList) {
             if (addedFaculty.getName().equals(faculty.getName())) {
-                throw new UniversityWithoutFacultyException("wrong faculty");
+                throw new IllegalArgumentException("wrong faculty" + faculty.getName());
             }
         }
         this.facultyList.add(faculty);
@@ -41,7 +42,7 @@ public class University implements IUniversity {
         return this.facultyList;
     }
 
-    public Faculty getFaculty(String reqFacultyName) throws UniversityWithoutFacultyException {
+    public Faculty getFaculty(String reqFacultyName) throws UniversityWithoutFacultyException, IllegalArgumentException {
         if (this.facultyList.isEmpty()) {
             throw new UniversityWithoutFacultyException(" No Faculties in University");
         }
@@ -50,7 +51,7 @@ public class University implements IUniversity {
                 return faculty;
             }
         }
-        throw new UniversityWithoutFacultyException("No faculty in University " + this.realUniversityName + "  with this Name" + reqFacultyName);
+        throw new IllegalArgumentException("No faculty in University " + this.realUniversityName + "  with this Name" + reqFacultyName);
     }
 
     @Override

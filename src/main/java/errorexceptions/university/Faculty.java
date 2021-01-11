@@ -21,16 +21,16 @@ public class Faculty implements IUniversity {
         this.groupList = new ArrayList<>();
     }
 
-    public void addGroup(Group group) throws FacultyHasInsufficientGroupsException {
+    public void addGroup(Group group) throws IllegalArgumentException {
         for (Group addedGroup : this.groupList) {
             if (addedGroup.getName().equals(group.getName())) {
-                throw new FacultyHasInsufficientGroupsException("wrong group" + group.getName());
+                throw new IllegalArgumentException("wrong group " + group.getName());
             }
         }
         this.groupList.add(group);
     }
 
-    public Group getGroup(String groupName) throws FacultyHasInsufficientGroupsException {
+    public Group getGroup(String groupName) throws FacultyHasInsufficientGroupsException, IllegalArgumentException {
         if (this.groupList.isEmpty()) {
             throw new FacultyHasInsufficientGroupsException(" No Groups in Faculty " + this.realFacultyName);
         }
@@ -39,7 +39,7 @@ public class Faculty implements IUniversity {
                 return group;
             }
         }
-        throw  new FacultyHasInsufficientGroupsException("No group in Faculty " + this.realFacultyName + "  with this Name" + groupName);
+        throw  new IllegalArgumentException("No group in Faculty " + this.realFacultyName + "  with this Name" + groupName);
     }
 
     @Override

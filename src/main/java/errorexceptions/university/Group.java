@@ -24,7 +24,7 @@ public class Group implements IUniversity {
     public void addStudent(Student student) throws IllegalArgumentException {
         for (Student addedStudent : this.studentList) {
             if (addedStudent.getName().equals(student.getName())) {
-                throw new IllegalArgumentException("wrong student" + student.getName());
+                throw new IllegalArgumentException("wrong student: " + student.getName());
             }
         }
         this.studentList.add(student);
