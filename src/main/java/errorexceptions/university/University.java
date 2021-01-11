@@ -1,8 +1,8 @@
 package errorexceptions.university;
 
-import errorexceptions.customsexception.GroupsWithoutStudentsException;
-import errorexceptions.customsexception.NoSubjectsForTheStudent;
-import errorexceptions.customsexception.UniversityWithoutFacultyException;
+import errorexceptions.universitycustomsexception.GroupsWithoutStudentsException;
+import errorexceptions.universitycustomsexception.NoSubjectsForTheStudent;
+import errorexceptions.universitycustomsexception.UniversityWithoutFacultyException;
 import errorexceptions.data.SubjectType;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class University implements IUniversity {
     public void addFaculty(Faculty faculty) throws IllegalArgumentException {
         for (Faculty addedFaculty : this.facultyList) {
             if (addedFaculty.getName().equals(faculty.getName())) {
-                throw new IllegalArgumentException("wrong faculty" + faculty.getName());
+                throw new IllegalArgumentException("faculty with this name exist, faculty " + faculty.getName());
             }
         }
         this.facultyList.add(faculty);
@@ -54,41 +54,35 @@ public class University implements IUniversity {
     }
 
     @Override
-    public ArrayList<Subject> getSubjectList() throws NoSubjectsForTheStudent, GroupsWithoutStudentsException {
-        ArrayList<Subject> subjectArrayList;
-        subjectArrayList = new ArrayList<>();
-        for (Faculty faculty : this.facultyList) {
-            for (Group group : faculty.getGroupList()) {
-                for (Student student : group.getStudentList()) {
-                    subjectArrayList.addAll(student.getSubjectList());
-                }
-            }
+    public ArrayList<Subject> getSubjectList() throws NoSubjectsForTheStudent, GroupsWithoutStudentsException, UniversityWithoutFacultyException {
+        ArrayList<Subject> subjectArrayList = new ArrayList<>();
+        for (Faculty faculty : getFacultyList()) {
+                    subjectArrayList.addAll(faculty.getSubjectList());
         }
         return subjectArrayList;
     }
 
     @Override
-    public double getAverage() throws NoSubjectsForTheStudent, GroupsWithoutStudentsException {
+    public double getAverage() throws NoSubjectsForTheStudent, GroupsWithoutStudentsException, UniversityWithoutFacultyException {
         int sum = 0;
-        int number = 0;
         for (Subject subject : getSubjectList()) {
             sum = sum + subject.getMark();
-            number = number + 1;
         }
-        return (double) sum / number;
+        return (double) sum / getSubjectList().size();
     }
 
     @Override
-    public double getAverage(SubjectType subjectType) throws NoSubjectsForTheStudent, GroupsWithoutStudentsException {
+    public double getAverage(SubjectType subjectType) throws NoSubjectsForTheStudent, GroupsWithoutStudentsException,
+            UniversityWithoutFacultyException {
         int sum = 0;
-        int number = 0;
+        int subjectNumber = 0;
         for (Subject subject : getSubjectList()) {
             if (subject.getName().equals(subjectType.getSubjectRealName())) {
                 sum = sum + subject.getMark();
-                number = number + 1;
+                subjectNumber++;
             }
         }
-        return (double) sum / number;
+        return (double) sum / subjectNumber;
     }
 
     @Override

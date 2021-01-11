@@ -1,7 +1,7 @@
 package errorexceptions.util;
 
 
-import errorexceptions.customsexception.MarkOutOfBoundsException;
+import errorexceptions.universitycustomsexception.MarkOutOfBoundsException;
 import errorexceptions.data.SubjectType;
 import errorexceptions.university.*;
 

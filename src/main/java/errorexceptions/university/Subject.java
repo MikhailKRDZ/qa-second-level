@@ -1,7 +1,7 @@
 package errorexceptions.university;
 
 
-import errorexceptions.customsexception.MarkOutOfBoundsException;
+import errorexceptions.universitycustomsexception.MarkOutOfBoundsException;
 
 public class Subject {
     private final String subjectName;
@@ -30,7 +30,7 @@ public class Subject {
     }
 
     public String getPersonId() {
-        return personId;
+        return this.personId;
     }
 
     @Override

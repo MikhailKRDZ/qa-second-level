@@ -1,7 +1,7 @@
 package errorexceptions;
 
 
-import errorexceptions.customsexception.CustomsExceptions;
+import errorexceptions.universitycustomsexception.CustomsExceptions;
 import errorexceptions.data.SubjectType;
 import errorexceptions.university.Faculty;
 import errorexceptions.university.Group;
