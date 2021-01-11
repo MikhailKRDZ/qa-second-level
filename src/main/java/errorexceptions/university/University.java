@@ -1,6 +1,5 @@
 package errorexceptions.university;
 
-import java.lang.Error;
 import errorexceptions.customsexception.GroupsWithoutStudentsException;
 import errorexceptions.customsexception.NoSubjectsForTheStudent;
 import errorexceptions.customsexception.UniversityWithoutFacultyException;
