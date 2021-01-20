@@ -15,7 +15,7 @@ public class Ship extends Thread {
     @Override
     public void run() {
         try {
-            while (true) {
+//            while (true) {
                 if (OperationsWithShip.LOAD.equals(this.operations)) {
                     port.take(this);
                     sleep(this.containers);
@@ -30,7 +30,7 @@ public class Ship extends Thread {
                 } else {
                     throw new IllegalStateException("Unexpected value: " + operations);
                 }
-            }
+//            }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
