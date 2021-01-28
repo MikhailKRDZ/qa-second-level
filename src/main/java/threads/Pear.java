@@ -1,13 +1,13 @@
 package threads;
 
-public class Pear{
+public class Pear {
     int id;
 
     public Pear(int id) {
         this.id = id;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 }

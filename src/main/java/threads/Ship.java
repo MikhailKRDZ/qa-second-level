@@ -3,7 +3,7 @@ package threads;
 
 public class Ship extends Thread {
     private final Port port;
-    private final Enum operations;
+    private final OperationsWithShip operations;
     int containers;
 
     Ship(Port port) {
@@ -14,26 +14,24 @@ public class Ship extends Thread {
 
     @Override
     public void run() {
-        try {
-//            while (true) {
-                if (OperationsWithShip.LOAD.equals(this.operations)) {
-                    port.take(this);
-                    sleep(this.containers);
-                } else if (OperationsWithShip.UNLOAD.equals(this.operations)) {
-                    port.put(this);
-                    sleep(this.containers);
-                } else if (OperationsWithShip.LOAD_UNLOAD.equals(this.operations)) {
-                    port.put(this);
-                    sleep(this.containers);
-                    port.take(this);
-                    sleep(this.containers);
-                } else {
-                    throw new IllegalStateException("Unexpected value: " + operations);
-                }
-//            }
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+            try {
+                    if (OperationsWithShip.LOAD.equals(this.operations)) {
+                        port.take(this);
+                        sleep(this.containers);
+                    } else if (OperationsWithShip.UNLOAD.equals(this.operations)) {
+                        port.put(this);
+                        sleep(this.containers);
+                    } else if (OperationsWithShip.LOAD_UNLOAD.equals(this.operations)) {
+                        port.put(this);
+                        sleep(this.containers);
+                        port.take(this);
+                        sleep(this.containers);
+                    } else {
+                        throw new IllegalStateException("Unexpected value: " + operations);
+                    }
+            } catch(InterruptedException e){
+                Thread.currentThread().interrupt();
+            }
     }
 }
 

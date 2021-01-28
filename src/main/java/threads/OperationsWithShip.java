@@ -1,6 +1,6 @@
 package threads;
 
-public enum OperationsWithShip {
+enum OperationsWithShip {
     UNLOAD, LOAD, LOAD_UNLOAD,
     ;
 }

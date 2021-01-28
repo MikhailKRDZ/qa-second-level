@@ -2,19 +2,23 @@ package threads;
 
 import java.util.concurrent.LinkedBlockingQueue;
 
-class Port {
+class Port extends Thread {
     private int currentNumberOfContainers;
     private final int pearsNumber;
     private final int containersCapacity;
-    private final LinkedBlockingQueue<Pear> pears;
+    private LinkedBlockingQueue<Pear> pears;
 
     Port(int pearsNumber) {
         this.pearsNumber = pearsNumber;
         this.currentNumberOfContainers = 0;
         this.containersCapacity = 500;
+        setPears(pearsNumber);
+    }
+
+    private void setPears(int pearsNumber) {
         this.pears = new LinkedBlockingQueue<>(pearsNumber);
         for (int i = 0; i < pearsNumber; i++) {
-            pears.add(new Pear(i));
+            this.pears.add(new Pear(i));
         }
     }
 
@@ -37,7 +41,7 @@ class Port {
     }
 
     public synchronized void take(Ship ship) {
-        while (this.currentNumberOfContainers - ship.containers <= 0) {
+        while (this.currentNumberOfContainers - ship.containers < 0) {
             System.out.println("Извините, в порту груз отсутствует, " + Thread.currentThread().getName() +
                     " ожидает очереди когда груз поступит в порт");
             try {
