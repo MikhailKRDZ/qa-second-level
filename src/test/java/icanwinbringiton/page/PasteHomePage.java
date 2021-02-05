@@ -48,7 +48,7 @@ public class PasteHomePage extends AbstractPage {
     public PasteHomePage chooseExpiration(String pasteExpiration) {
         expirationDropDown.click();
         String xpath = String.format(expirationsLocator, pasteExpiration);
-        new WebDriverWait(driver, 30).until(elementToBeClickable(By.xpath(xpath))).click();
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(By.xpath(xpath))).click();
         return this;
     }
 
@@ -60,7 +60,7 @@ public class PasteHomePage extends AbstractPage {
     public PasteHomePage chooseSyntaxHighlighting(String syntaxHighlighting) {
         syntaxHighlightingDropDown.click();
         String xpath = String.format(syntaxHighlightingLocator, syntaxHighlighting);
-        new WebDriverWait(driver, 30).until(elementToBeClickable(By.xpath(xpath))).click();
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(By.xpath(xpath))).click();
         return this;
     }
 
