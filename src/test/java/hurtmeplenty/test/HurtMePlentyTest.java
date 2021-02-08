@@ -1,8 +1,8 @@
 package hurtmeplenty.test;
 
 import hurtmeplenty.page.MainPage;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,9 +16,10 @@ public class HurtMePlentyTest {
 
     @BeforeMethod(alwaysRun = true)
     public void browserSetup() {
+        WebDriverManager.chromedriver().setup();
 
-        //no remote webdriver run during this demo
         driver = new ChromeDriver();
+
         driver.manage().window().maximize();
     }
 
@@ -45,11 +46,14 @@ public class HurtMePlentyTest {
             "9. Проверить что сумма аренды в месяц совпадает с суммой получаемой при ручном прохождении теста.")
     public void checkRentalAmountPerMonth() throws InterruptedException {
         String inputData = "Google Cloud Platform Pricing Calculator";
+        String searchResultData = "Google Cloud Platform Pricing Calculator";
         String numberOfInstances = "4";
         String whatInstancesForData = "";
+//        String whatInstancesForData = "test";
         String operationSystemData = "Free: Debian, CentOS, CoreOS, Ubuntu, or other User Provided OS";
         String virtualMachineTypeInputData = "Regular";
-        String instanceNodeTypeInputData = "n1-standard-8(vCPUs: 8, RAM: 30 GB)";
+//        String instanceNodeTypeInputData = "n1-standard-8(vCPUs: 8, RAM: 30 GB)";
+        String instanceNodeTypeInputData = "n1-standard-8 (vCPUs: 8, RAM: 30GB)";
 //        String inputNumberOfGPUs = "1"; такого нету!!!
         String inputNumberOfGPUs = "4";
         String inputTypeOfGPUs = "NVIDIA Tesla V100";
@@ -57,12 +61,13 @@ public class HurtMePlentyTest {
         String inputLocalSSD = "24x375 GB";
         String inputDatacenterLocation = "Frankfurt (europe-west3)";
         String inputCommittedUsage = "1 Year";
+        String manualResult = "USD 8,562.34 per 1 month"; //проверить
 
 
-        List<WebElement> results = new MainPage(driver)
+        List<String> results = new MainPage(driver)
                 .openPage()
                 .search(inputData)
-                .clickSearchResult()
+                .selectSearchResult(searchResultData)
                 .switchToFrameCalculator()
                 .activateButtonComputeEngine()
                 .inputNumberOfInstances(numberOfInstances)
@@ -70,21 +75,23 @@ public class HurtMePlentyTest {
                 .selectOperationSystem(operationSystemData)
                 .selectVirtualMachineType(virtualMachineTypeInputData)
                 .selectInstanceNodeType(instanceNodeTypeInputData)
-                .chooseAddGPUs(inputNumberOfGPUs, inputTypeOfGPUs)
-                .chooseLocalSSD(inputLocalSSD)
-                .chooseDatacenterLocation(inputDatacenterLocation)
-                .chooseCommittedUsage(inputCommittedUsage)
+                .selectAddGPUs(inputNumberOfGPUs, inputTypeOfGPUs)
+                .selectLocalSSD(inputLocalSSD)
+                .selectDatacenterLocation(inputDatacenterLocation)//
+                .selectCommittedUsage(inputCommittedUsage)
                 .clickAddToEstimate()
-//                .switchToFrameCalculatorResults()
                 .getResults();
-
-//        System.out.println(results);// не печ
-        for (WebElement webElement : results) {
-            System.out.println(webElement.getText());
+        for (String string : results) {
+            System.out.println(string);
         }
         int a = 1;
 // получить результаты
+        //изменить точки на sibling и тд
         //    "8. Проверить соответствие данных следующих полей: VM Class, Instance type, Region, local SSD, commitment term" +
+////md-card-content[@id='resultBlock']//*[contains(text(),'%s')]
+//        commitment term?
+        //попробуем через commitment term (CommittedUsage)
+//        md-card-content[@id='resultBlock']//*[contains(text(),'%s')]
         //            "9. Проверить что сумма аренды в месяц совпадает с суммой получаемой при ручном прохождении теста.")
 //
 
