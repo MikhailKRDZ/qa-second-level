@@ -50,13 +50,12 @@ public class HurtMePlentyTest {
         String virtualMachineTypeInputData = "Regular";
         String instanceNodeSeriesInputData = "N1";
         String instanceNodeNameInputData = "n1-standard-8 (vCPUs: 8, RAM: 30GB)";
-        String numberOfGPUsInputData = "4";
+        String numberOfGPUsInputData = "1";
         String typeOfGPUsInputData = "NVIDIA Tesla V100";
-//        String localSSDInputData     = "2x375 GB";  в условии
-        String localSSDInputData = "24x375 GB";
+        String localSSDInputData     = "2x375 GB";
         String datacenterLocationInputData = "Frankfurt (europe-west3)";
         String committedUsageInputData = "1 Year";
-        String manualCostResultInputData = "USD 3,095.85 per 1 month";
+        String manualCostResultInputData = "USD 1,082.77 per 1 month";
 
         GoogleCloudPricingCalculatorFrame googleCloudPricingCalculatorFrame = new MainPage(driver)
                 .openPage()
