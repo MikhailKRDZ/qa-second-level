@@ -1,7 +1,6 @@
 package hurtmeplenty.page.pricingcalculator;
 
 import hurtmeplenty.page.AbstractPageHurtMePlenty;
-import hurtmeplenty.page.pricingcalculator.frame.GoogleCloudPricingCalculatorFrame;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,7 +22,6 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPageHurtMePlenty {
         driver.switchTo().frame(0);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         driver.switchTo().frame(0);
-        new GoogleCloudPricingCalculatorFrame(this.driver).activateButtonComputeEngine();
         return new GoogleCloudPricingCalculatorFrame(this.driver);
     }
 
