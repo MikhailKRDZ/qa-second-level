@@ -3,16 +3,17 @@ package hardcore.test;
 
 import hardcore.page.MainPage;
 import hardcore.page.TemporaryEmailPage;
-import hardcore.page.pricingcalculator.EmailYourEstimateFrame;
+import hardcore.page.pricingcalculator.GoogleCloudPricingCalculatorPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class HardcoreTest {
@@ -66,16 +67,8 @@ public class HardcoreTest {
         String localSSDInputData     = "2x375 GB";
         String datacenterLocationInputData = "Frankfurt (europe-west3)";
         String committedUsageInputData = "1 Year";
-        String manualCostResultInputData = "USD 1,082.77 per 1 month";
-        String temporaryEmailURL = "USD 1,082.77 per 1 month";
 
-        List<WebDriver> tabs = new ArrayList();
-////        driver = new ChromeDriver();
-//        driver.get("http://google.com");
-        tabs.add(driver);
-
-
-        EmailYourEstimateFrame emailYourEstimateFrame = new MainPage(driver)
+        GoogleCloudPricingCalculatorPage emailYourEstimateFrame = new MainPage(driver)
                 .openPage()
                 .search(inputData)
                 .selectSearchResult(searchResultData)
@@ -93,61 +86,41 @@ public class HardcoreTest {
                 .selectDatacenterLocation(datacenterLocationInputData)//
                 .selectCommittedUsage(committedUsageInputData)
                 .clickAddToEstimate()
-                //
                 .clickEmailEstimateButton();
 
-        tabs.add(driver);
+        ((JavascriptExecutor) driver).executeScript("window.open()");
 
-        WebDriver tempDriver = new ChromeDriver();
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
 
-        String postAddressFromTemporaryEmailService = new TemporaryEmailPage(tempDriver)
+        String postAddressFromTemporaryEmailService = new TemporaryEmailPage(driver)
                 .openPage()
                 .getTemporaryEmail();
-        tabs.add(tempDriver);
+
+        driver.switchTo().window(tabs.get(0));
 
         emailYourEstimateFrame
+                .switchToFrameCalculator()
                 .inputPostAddressValueToEstimate(postAddressFromTemporaryEmailService)
                  .clickSendEmailButton();
 
-        System.out.println(postAddressFromTemporaryEmailService);
+        driver.switchTo().window(tabs.get(1));
 
-
-        String postDataTotalEstimatedMonthlyCost = new TemporaryEmailPage(tabs.get(tabs.size() - 1))
+        String postDataTotalEstimatedMonthlyCost = new TemporaryEmailPage(driver)
                 .waitUntilElementToBeClickable(100)
                 .clickElement()
                 .getMessageFromTemporaryEmailService();
 
+        driver.switchTo().window(tabs.get(1));
 
-        System.out.println(postDataTotalEstimatedMonthlyCost);
+        String totalEstimatedCostResult = emailYourEstimateFrame
+                .switchToFrameCalculator()
+                .getTotalEstimatedCostResult();
 
-
-//        tabs.add((WebDriver) emailYourEstimateFrame);
-//
-//        WebDriver tempDriver = new ChromeDriver();
-////        tempDriver.get("http://bing.com");
-//
-//        String postAddressFromTemporaryEmailService=new TemporaryEmailPage(tempDriver)
-//                .getTemporaryEmail()
-////                .getPostAddressFromTemporaryEmailService();
-//        ;
-//        tabs.add(tempDriver);
-//
-//
-////        EmailYourEstimateFrame page = (EmailYourEstimateFrame) tabs.get(0);
-////        String letter = emailYourEstimateFrame
-//////                .switchToEmailYourEstimateFrame()
-//        emailYourEstimateFrame
-//                .inputPostAddressValueToEstimate(postAddressFromTemporaryEmailService)
-//                .clickSendEmailButton()
-//                .getLetter();
-
-
-        int a = 0;
-
-//        Assert.assertEquals(
-////                letter.getTotalEstimatedCostResult()
-////                , GoogleCloudPricingCalculatorFrame.getTotalEstimatedCostResult())
-//                , "The search result, TotalEstimatedCost value, is equals manualCostResultInputData.");
+        Assert.assertEquals(
+                postDataTotalEstimatedMonthlyCost
+                , totalEstimatedCostResult//?
+                , "The search result, TotalEstimatedCost value, is equals manualCostResultInputData.");
     }
 
     @AfterMethod(alwaysRun = true)

@@ -26,17 +26,8 @@ public class GoogleCloudPricingCalculatorPage extends AbstractPageHardcore {
     }
 
     public GoogleCloudPricingCalculatorPage switchToDefaultFrame() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(frame)).click();
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(frame));
         driver.switchTo().defaultContent();
         return new GoogleCloudPricingCalculatorPage(this.driver);
-    }
-
-    @Override
-    protected AbstractPageHardcore openPage() {
-        throw new RuntimeException("Please 'think twice' whether you need this page open directly " +
-                "if direct access is still needed - please dig into Google Custom Search engine at" +
-                " https://cse.google.com/cse/ for proper implementation " +
-                "or avoid inheritance from AbstractPage " +
-                "or remove openPage() method from AbstractPage.");
     }
 }

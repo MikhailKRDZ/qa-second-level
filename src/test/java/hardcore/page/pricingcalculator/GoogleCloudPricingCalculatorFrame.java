@@ -55,8 +55,11 @@ public class GoogleCloudPricingCalculatorFrame extends GoogleCloudPricingCalcula
     @FindBy(xpath = "//*[contains(text(),'Email Estimate')]")
     private WebElement webElementEmailEstimateButton;
 
+    @FindBy(xpath = "//form[@name='emailForm']//label[contains(text(),'Email')]/..//input")
+    private WebElement webElementEmailInputForm;
 
-
+    @FindBy(xpath = "//button[contains(text(),'Send Email')]")
+    private WebElement webElementEmailInputButton;
 
 
     private String defaultLocatorInSelectArea =
@@ -152,26 +155,6 @@ public class GoogleCloudPricingCalculatorFrame extends GoogleCloudPricingCalcula
         return this;
     }
 
-    public String getVMClassResult() {
-        return selectDataFromResultForm("VM class:");
-    }
-
-    public String getInstanceTypeResult() {
-        return selectDataFromResultForm("Instance type:");
-    }
-
-    public String getRegionResult() {
-        return selectDataFromResultForm("Region:");
-    }
-
-    public String getLocalSSDResult() {
-        return selectDataFromResultForm("Total available local SSD space").replaceAll("i", "");
-    }
-
-    public String getCommitmentTermValue() {
-        return selectDataFromResultForm("Commitment term:");
-    }
-
     public String getTotalEstimatedCostResult() {
         return selectDataFromResultForm("Total Estimated Cost:");
     }
@@ -183,18 +166,26 @@ public class GoogleCloudPricingCalculatorFrame extends GoogleCloudPricingCalcula
         driver.findElement(By.xpath(String.format(this.defaultLocatorInSelectArea, operationSystemData))).click();
     }
 
-
     private String selectDataFromResultForm(String elementsName) {
         WebElement webElement = driver.findElement(By.xpath(String.format(defaultLocatorInResultArea, elementsName)));
         return webElement.getText().split(elementsName)[1].replaceAll("\\s+", "");
     }
 
-    public EmailYourEstimateFrame clickEmailEstimateButton() {
+    public GoogleCloudPricingCalculatorFrame clickEmailEstimateButton() {
         webElementEmailEstimateButton.click();
-        return new EmailYourEstimateFrame(this.driver);
+        return this;
     }
 
-    public String getLetter() {
-        return null;
+    public GoogleCloudPricingCalculatorFrame inputPostAddressValueToEstimate(String emailAddress) {
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(
+                webElementEmailInputForm)).sendKeys(emailAddress);
+
+        return this;
+    }
+
+    public GoogleCloudPricingCalculatorFrame clickSendEmailButton() {
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(
+                webElementAddToEstimateButton)).click();
+        return this;
     }
 }
