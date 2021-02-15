@@ -55,7 +55,7 @@ public class TemporaryEmailPage extends AbstractPageHardcore {
     }
 
     public TemporaryEmailPage waitUntilElementToBeClickable(int waitSecond) {
-        new WebDriverWait(driver, waitSecond).until(visibilityOf(
+        new WebDriverWait(driver, waitSecond).until(ExpectedConditions.visibilityOf(
                 webElementEmailMessages));
         return this;
     }
@@ -67,7 +67,7 @@ public class TemporaryEmailPage extends AbstractPageHardcore {
     }
 
     public String getMessageFromTemporaryEmailService() {
-        return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(
+        return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(
                 webElementEstimatedMonthlyCostValue)).getText().replaceAll("\\s+", "");
     }
 }
