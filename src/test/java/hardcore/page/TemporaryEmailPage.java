@@ -67,7 +67,7 @@ public class TemporaryEmailPage extends AbstractPageHardcore {
     }
 
     public String getMessageFromTemporaryEmailService() {
-        return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(visibilityOf(
+        return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(
                 webElementEstimatedMonthlyCostValue)).getText().replaceAll("\\s+", "");
     }
 }
