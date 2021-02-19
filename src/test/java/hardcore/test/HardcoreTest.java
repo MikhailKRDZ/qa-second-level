@@ -113,7 +113,7 @@ public class HardcoreTest {
         driver.switchTo().window(tabs.get(1));
 
         String totalPostEstimatedCostResult = new TemporaryEmailPage(driver)
-                .waitUntilElementToBeClickable(100)
+                .waitUntilElementToBeClickable(150)
                 .clickElementOpenEmailLink()
                 .getMessageFromTemporaryEmailService();
 
