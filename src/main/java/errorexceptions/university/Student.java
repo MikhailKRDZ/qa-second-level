@@ -1,8 +1,8 @@
 package errorexceptions.university;
 
 
-import errorexceptions.universitycustomsexception.NoSubjectsForTheStudent;
 import errorexceptions.data.SubjectType;
+import errorexceptions.universitycustomsexception.NoSubjectsForTheStudent;
 
 import java.util.ArrayList;
 

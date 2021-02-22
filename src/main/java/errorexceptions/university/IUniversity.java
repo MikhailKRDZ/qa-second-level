@@ -1,10 +1,10 @@
 package errorexceptions.university;
 
 
+import errorexceptions.data.SubjectType;
 import errorexceptions.universitycustomsexception.GroupsWithoutStudentsException;
 import errorexceptions.universitycustomsexception.NoSubjectsForTheStudent;
 import errorexceptions.universitycustomsexception.UniversityWithoutFacultyException;
-import errorexceptions.data.SubjectType;
 
 import java.util.ArrayList;
 

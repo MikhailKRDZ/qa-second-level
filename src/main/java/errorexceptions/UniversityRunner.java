@@ -1,12 +1,11 @@
 package errorexceptions;
 
-
-import errorexceptions.universitycustomsexception.CustomsExceptions;
 import errorexceptions.data.SubjectType;
 import errorexceptions.university.Faculty;
 import errorexceptions.university.Group;
 import errorexceptions.university.Student;
 import errorexceptions.university.University;
+import errorexceptions.universitycustomsexception.CustomsExceptions;
 import errorexceptions.util.GeneratorData;
 import errorexceptions.util.Printer;
 
@@ -14,8 +13,7 @@ public class UniversityRunner {
 
     public static void main(String[] args) {
         try {
-            University university = GeneratorData.generateRequiredData(3, 4,
-                    5, 6);
+            University university = GeneratorData.generateRequiredData(3, 4,  5, 6);
 
             Printer.printUniversityStructure(university);
             Printer.printAllSubjects(university);
