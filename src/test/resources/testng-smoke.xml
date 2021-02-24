@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Smoke" verbose="1" >
-    <test name="All tests"   >
+    <test name="HardcoreTest"   >
         <classes>
-            <class name="frameworktask.test.HardcoreTest" />
+            <class name="framework.test.HardcoreTest" />
         </classes>
     </test>
 </suite>
