@@ -77,8 +77,8 @@ public class HardcoreTest extends CommonConditions {
         driver.switchTo().window(tabs.get(1));
 
         String totalPostEstimatedCostResult = temporaryEmailPage
-                .waitUntilElementToBeVisible(150)
-                .clickElementOpenEmailLink()
+//                .waitUntilElementToBeVisible(150)
+                .clickElementOpenEmailLink(150)
                 .getMessageFromTemporaryEmailService();
 
         Assert.assertTrue(totalCalculatorEstimatedCostResult.contains(totalPostEstimatedCostResult)

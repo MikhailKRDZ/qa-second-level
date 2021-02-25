@@ -21,8 +21,8 @@ public class TemporaryEmailPage extends AbstractPageHardcore {
     private final Logger logger = LogManager.getRootLogger();
     private static final String EMAIL_PAGE_URL = "https://10minutemail.com/";
 
-    @FindBy(xpath = "//section[@id='mail_messages']")
-    private WebElement webElementEmailMessages;
+//    @FindBy(xpath = "//section[@id='mail_messages']")
+//    private WebElement webElementEmailMessages;
 
     @FindBy(xpath = "//span[@class='copy_icon']")
     private WebElement webElementEmailCopyButton;
@@ -56,14 +56,14 @@ public class TemporaryEmailPage extends AbstractPageHardcore {
         logger.info("Email page opened");
         return this;
     }
+//
+//    public TemporaryEmailPage waitUntilElementToBeVisible(int waitSecond) {
+//        new WebDriverWait(driver, waitSecond).until(ExpectedConditions.jsReturnsValue(webElementEmailMessages.getText()));
+//        return this;
+//    }
 
-    public TemporaryEmailPage waitUntilElementToBeVisible(int waitSecond) {
-        new WebDriverWait(driver, waitSecond).until(ExpectedConditions.jsReturnsValue(webElementEmailMessages.getText()));
-        return this;
-    }
-
-    public TemporaryEmailPage clickElementOpenEmailLink() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(
+    public TemporaryEmailPage clickElementOpenEmailLink(int waitSecond) {
+        new WebDriverWait(driver, waitSecond).until(elementToBeClickable(
                 webElementOpenEmailLink)).click();
         return this;
     }
