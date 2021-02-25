@@ -1,9 +1,12 @@
 package framework.page;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
@@ -15,6 +18,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class TemporaryEmailPage extends AbstractPageHardcore {
+    private final Logger logger = LogManager.getRootLogger();
     private static final String EMAIL_PAGE_URL = "https://10minutemail.com/";
 
     @FindBy(xpath = "//section[@id='mail_messages']")
@@ -36,25 +40,25 @@ public class TemporaryEmailPage extends AbstractPageHardcore {
     }
 
     public String getTemporaryEmail() {
+        String generatedEmail="";
+        try {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(
                 webElementEmailCopyButton)).click();
-        try {
-            return (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
+            generatedEmail = String.valueOf(Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor));
         } catch (UnsupportedFlavorException | IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return generatedEmail;
     }
 
     public TemporaryEmailPage openPage() {
-        driver.get(EMAIL_PAGE_URL);
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
+        driver.navigate().to(EMAIL_PAGE_URL);
+        logger.info("Email page opened");
         return this;
     }
 
     public TemporaryEmailPage waitUntilElementToBeVisible(int waitSecond) {
-        new WebDriverWait(driver, waitSecond).until(visibilityOf(
-                webElementEmailMessages));
+        new WebDriverWait(driver, waitSecond).until(ExpectedConditions.jsReturnsValue(webElementEmailMessages.getText()));
         return this;
     }
 

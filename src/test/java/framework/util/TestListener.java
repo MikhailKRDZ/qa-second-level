@@ -4,6 +4,7 @@ package framework.util;
 import framework.driver.DriverSingleton;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
@@ -14,11 +15,10 @@ import java.io.File;
 import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.logging.Logger;
 
 
 public class TestListener implements ITestListener {
-//    private Logger log = (Logger) LogManager.getRootLogger();
+    private Logger log =  LogManager.getRootLogger();
 
     public void onTestStart(ITestResult iTestResult) {
 
@@ -58,7 +58,7 @@ public class TestListener implements ITestListener {
                     + getCurrentTimeAsString() +
                     ".png"));
         } catch (IOException e) {
-//            log.error("Failed to save screenshot: " + e.getLocalizedMessage());
+            log.error("Failed to save screenshot: " + e.getLocalizedMessage());
         }
     }
 

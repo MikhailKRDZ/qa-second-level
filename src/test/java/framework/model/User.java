@@ -4,151 +4,125 @@ import java.util.Objects;
 
 public class User {
 
-    private String  inputData;
-    private String searchResultData;
+    private String searchInput;
+    private String searchResult;
     private String numberOfInstances;
-    private String whatInstancesForInputData;
-    private String operationSystemInputData;
-    private String virtualMachineTypeInputData;
-    private String instanceNodeSeriesInputData;
-    private String instanceNodeNameInputData;
-    private String numberOfGPUsInputData;
-    private String typeOfGPUsInputData;
-    private String localSSDInputData;
-    private String datacenterLocationInputData;
-    private String committedUsageInputData;
+    private String whatInstancesFor;
+    private String operationSystem;
+    private String virtualMachineType;
+    private String instanceNodeSeries;
+    private String instanceNodeName;
+    private String numberOfGPUs;
+    private String typeOfGPUs;
+    private String localSSD;
+    private String datacenterLocation;
+    private String committedUsage;
 
-    public User(String inputData,
-                String searchResultData,
-                String numberOfInstances,
-                String whatInstancesForInputData,
-                String operationSystemInputData,
-                String virtualMachineTypeInputData,
-                String instanceNodeSeriesInputData,
-                String instanceNodeNameInputData,
-                String numberOfGPUsInputData,
-                String typeOfGPUsInputData,
-                String localSSDInputData,
-                String datacenterLocationInputData,
-                String committedUsageInputData
-    ) {
-        this.inputData = inputData;
-        this.searchResultData = searchResultData;
-        this.numberOfInstances = numberOfInstances;
-        this.whatInstancesForInputData = whatInstancesForInputData;
-        this.operationSystemInputData = operationSystemInputData;
-        this.virtualMachineTypeInputData = virtualMachineTypeInputData;
-        this.instanceNodeSeriesInputData = instanceNodeSeriesInputData;
-        this.instanceNodeNameInputData = instanceNodeNameInputData;
-        this.numberOfGPUsInputData = numberOfGPUsInputData;
-        this.typeOfGPUsInputData = typeOfGPUsInputData;
-        this.localSSDInputData = localSSDInputData;
-        this.datacenterLocationInputData = datacenterLocationInputData;
-        this.committedUsageInputData = committedUsageInputData;
+    public User() {
     }
 
-    public void setInputData(String inputData) {
-        this.inputData = inputData;
+    public void setSearchInput(String searchInput) {
+        this.searchInput = searchInput;
     }
 
-    public void setSearchResultData(String searchResultData) {
-        this.searchResultData = searchResultData;
+    public void setSearchResult(String searchResult) {
+        this.searchResult = searchResult;
     }
 
     public void setNumberOfInstances(String numberOfInstances) {
         this.numberOfInstances = numberOfInstances;
     }
 
-    public void setWhatInstancesForInputData(String whatInstancesForInputData) {
-        this.whatInstancesForInputData = whatInstancesForInputData;
+    public void setWhatInstancesFor(String whatInstancesFor) {
+        this.whatInstancesFor = whatInstancesFor;
     }
 
-    public void setOperationSystemInputData(String operationSystemInputData) {
-        this.operationSystemInputData = operationSystemInputData;
+    public void setOperationSystem(String operationSystem) {
+        this.operationSystem = operationSystem;
     }
 
-    public void setVirtualMachineTypeInputData(String virtualMachineTypeInputData) {
-        this.virtualMachineTypeInputData = virtualMachineTypeInputData;
+    public void setVirtualMachineType(String virtualMachineType) {
+        this.virtualMachineType = virtualMachineType;
     }
 
-    public void setInstanceNodeSeriesInputData(String instanceNodeSeriesInputData) {
-        this.instanceNodeSeriesInputData = instanceNodeSeriesInputData;
+    public void setInstanceNodeSeries(String instanceNodeSeries) {
+        this.instanceNodeSeries = instanceNodeSeries;
     }
 
-    public void setInstanceNodeNameInputData(String instanceNodeNameInputData) {
-        this.instanceNodeNameInputData = instanceNodeNameInputData;
+    public void setInstanceNodeName(String instanceNodeName) {
+        this.instanceNodeName = instanceNodeName;
     }
 
-    public void setNumberOfGPUsInputData(String numberOfGPUsInputData) {
-        this.numberOfGPUsInputData = numberOfGPUsInputData;
+    public void setNumberOfGPUs(String numberOfGPUs) {
+        this.numberOfGPUs = numberOfGPUs;
     }
 
-    public void setTypeOfGPUsInputData(String typeOfGPUsInputData) {
-        this.typeOfGPUsInputData = typeOfGPUsInputData;
+    public void setTypeOfGPUs(String typeOfGPUs) {
+        this.typeOfGPUs = typeOfGPUs;
     }
 
-    public void setLocalSSDInputData(String localSSDInputData) {
-        this.localSSDInputData = localSSDInputData;
+    public void setLocalSSD(String localSSD) {
+        this.localSSD = localSSD;
     }
 
-    public void setDatacenterLocationInputData(String datacenterLocationInputData) {
-        this.datacenterLocationInputData = datacenterLocationInputData;
+    public void setDatacenterLocation(String datacenterLocation) {
+        this.datacenterLocation = datacenterLocation;
     }
 
-    public void setCommittedUsageInputData(String committedUsageInputData) {
-        this.committedUsageInputData = committedUsageInputData;
+    public void setCommittedUsage(String committedUsage) {
+        this.committedUsage = committedUsage;
     }
 
-    public String getOperationSystemInputData() {
-        return operationSystemInputData;
+    public String getOperationSystem() {
+        return operationSystem;
     }
 
-    public String getInputData() {
-        return inputData;
+    public String getSearchInput() {
+        return searchInput;
     }
 
-    public String getSearchResultData() {
-        return searchResultData;
+    public String getSearchResult() {
+        return searchResult;
     }
 
     public String getNumberOfInstances() {
         return numberOfInstances;
     }
 
-    public String getWhatInstancesForInputData() {
-        return whatInstancesForInputData;
+    public String getWhatInstancesFor() {
+        return whatInstancesFor;
     }
 
-    public String getVirtualMachineTypeInputData() {
-        return virtualMachineTypeInputData;
+    public String getVirtualMachineType() {
+        return virtualMachineType;
     }
 
-    public String getInstanceNodeSeriesInputData() {
-        return instanceNodeSeriesInputData;
+    public String getInstanceNodeSeries() {
+        return instanceNodeSeries;
     }
 
-    public String getInstanceNodeNameInputData() {
-        return instanceNodeNameInputData;
+    public String getInstanceNodeName() {
+        return instanceNodeName;
     }
 
-    public String getNumberOfGPUsInputData() {
-        return numberOfGPUsInputData;
+    public String getNumberOfGPUs() {
+        return numberOfGPUs;
     }
 
-    public String getTypeOfGPUsInputData() {
-        return typeOfGPUsInputData;
+    public String getTypeOfGPUs() {
+        return typeOfGPUs;
     }
 
-    public String getLocalSSDInputData() {
-        return localSSDInputData;
+    public String getLocalSSD() {
+        return localSSD;
     }
 
-    public String getDatacenterLocationInputData() {
-        return datacenterLocationInputData;
+    public String getDatacenterLocation() {
+        return datacenterLocation;
     }
 
-    public String getCommittedUsageInputData() {
-        return committedUsageInputData;
+    public String getCommittedUsage() {
+        return committedUsage;
     }
 
     @Override
@@ -156,53 +130,53 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(inputData, user.inputData) && Objects.equals(searchResultData, user.searchResultData)
+        return Objects.equals(searchInput, user.searchInput) && Objects.equals(searchResult, user.searchResult)
                 && Objects.equals(numberOfInstances, user.numberOfInstances)
-                && Objects.equals(whatInstancesForInputData, user.whatInstancesForInputData)
-                && Objects.equals(operationSystemInputData, user.operationSystemInputData)
-                && Objects.equals(virtualMachineTypeInputData, user.virtualMachineTypeInputData)
-                && Objects.equals(instanceNodeSeriesInputData, user.instanceNodeSeriesInputData)
-                && Objects.equals(instanceNodeNameInputData, user.instanceNodeNameInputData)
-                && Objects.equals(numberOfGPUsInputData, user.numberOfGPUsInputData)
-                && Objects.equals(typeOfGPUsInputData, user.typeOfGPUsInputData)
-                && Objects.equals(localSSDInputData, user.localSSDInputData)
-                && Objects.equals(datacenterLocationInputData, user.datacenterLocationInputData)
-                && Objects.equals(committedUsageInputData, user.committedUsageInputData);
+                && Objects.equals(whatInstancesFor, user.whatInstancesFor)
+                && Objects.equals(operationSystem, user.operationSystem)
+                && Objects.equals(virtualMachineType, user.virtualMachineType)
+                && Objects.equals(instanceNodeSeries, user.instanceNodeSeries)
+                && Objects.equals(instanceNodeName, user.instanceNodeName)
+                && Objects.equals(numberOfGPUs, user.numberOfGPUs)
+                && Objects.equals(typeOfGPUs, user.typeOfGPUs)
+                && Objects.equals(localSSD, user.localSSD)
+                && Objects.equals(datacenterLocation, user.datacenterLocation)
+                && Objects.equals(committedUsage, user.committedUsage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(inputData,
-                searchResultData,
+        return Objects.hash(searchInput,
+                searchResult,
                 numberOfInstances,
-                whatInstancesForInputData,
-                operationSystemInputData,
-                virtualMachineTypeInputData,
-                instanceNodeSeriesInputData,
-                instanceNodeNameInputData,
-                numberOfGPUsInputData,
-                typeOfGPUsInputData,
-                localSSDInputData,
-                datacenterLocationInputData,
-                committedUsageInputData);
+                whatInstancesFor,
+                operationSystem,
+                virtualMachineType,
+                instanceNodeSeries,
+                instanceNodeName,
+                numberOfGPUs,
+                typeOfGPUs,
+                localSSD,
+                datacenterLocation,
+                committedUsage);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "inputData='" + inputData + '\'' +
-                ", searchResultData='" + searchResultData + '\'' +
+                "inputData='" + searchInput + '\'' +
+                ", searchResultData='" + searchResult + '\'' +
                 ", numberOfInstances='" + numberOfInstances + '\'' +
-                ", whatInstancesForInputData='" + whatInstancesForInputData + '\'' +
-                ", operationSystemInputData='" + operationSystemInputData + '\'' +
-                ", virtualMachineTypeInputData='" + virtualMachineTypeInputData + '\'' +
-                ", instanceNodeSeriesInputData='" + instanceNodeSeriesInputData + '\'' +
-                ", instanceNodeNameInputData='" + instanceNodeNameInputData + '\'' +
-                ", numberOfGPUsInputData='" + numberOfGPUsInputData + '\'' +
-                ", typeOfGPUsInputData='" + typeOfGPUsInputData + '\'' +
-                ", localSSDInputData='" + localSSDInputData + '\'' +
-                ", datacenterLocationInputData='" + datacenterLocationInputData + '\'' +
-                ", committedUsageInputData='" + committedUsageInputData + '\'' +
+                ", whatInstancesForInputData='" + whatInstancesFor + '\'' +
+                ", operationSystemInputData='" + operationSystem + '\'' +
+                ", virtualMachineTypeInputData='" + virtualMachineType + '\'' +
+                ", instanceNodeSeriesInputData='" + instanceNodeSeries + '\'' +
+                ", instanceNodeNameInputData='" + instanceNodeName + '\'' +
+                ", numberOfGPUsInputData='" + numberOfGPUs + '\'' +
+                ", typeOfGPUsInputData='" + typeOfGPUs + '\'' +
+                ", localSSDInputData='" + localSSD + '\'' +
+                ", datacenterLocationInputData='" + datacenterLocation + '\'' +
+                ", committedUsageInputData='" + committedUsage + '\'' +
                 '}';
     }
 

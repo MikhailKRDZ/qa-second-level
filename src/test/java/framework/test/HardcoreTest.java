@@ -46,23 +46,8 @@ public class HardcoreTest extends CommonConditions {
         User testUser = UserCreator.withCredentialsFromProperty();
 
         GoogleCloudPricingCalculatorFrame googleCloudPricingCalculatorFrame = new MainPage(driver)
-                .openPage()
-                .search(testUser.getInputData())
-                .selectSearchResult(testUser.getSearchResultData())
-                .switchToFrameCalculator()
-                .inputNumberOfInstances(testUser.getNumberOfInstances())
-                .inputWhatInstancesFor(testUser.getWhatInstancesForInputData())
-                .selectOperationSystem(testUser.getOperationSystemInputData())
-                .selectVirtualMachineType(testUser.getVirtualMachineTypeInputData())
-                .selectInstanceNodeSeries(testUser.getInstanceNodeSeriesInputData())
-                .selectInstanceNodeName(testUser.getInstanceNodeNameInputData())
-                .clickAddGPUs()
-                .selectNumberOfGPUs(testUser.getNumberOfGPUsInputData())
-                .selectTypeOfGPUs(testUser.getTypeOfGPUsInputData())
-                .selectLocalSSD(testUser.getLocalSSDInputData())
-                .selectDatacenterLocation(testUser.getDatacenterLocationInputData())
-                .selectCommittedUsage(testUser.getCommittedUsageInputData())
-                .clickAddToEstimate();
+                .fillData(testUser);
+
 
         String totalCalculatorEstimatedCostResult = googleCloudPricingCalculatorFrame
                 .getTotalEstimatedCostResult();
@@ -76,8 +61,10 @@ public class HardcoreTest extends CommonConditions {
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
 
-        String postAddressFromTemporaryEmailService = new TemporaryEmailPage(driver)
-                .openPage()
+        TemporaryEmailPage temporaryEmailPage = new TemporaryEmailPage(driver)
+                .openPage();
+
+        String postAddressFromTemporaryEmailService = temporaryEmailPage
                 .getTemporaryEmail();
 
         driver.switchTo().window(tabs.get(0));
@@ -89,12 +76,10 @@ public class HardcoreTest extends CommonConditions {
 
         driver.switchTo().window(tabs.get(1));
 
-        String totalPostEstimatedCostResult = new TemporaryEmailPage(driver)
-                .waitUntilElementToBeVisible(200)
+        String totalPostEstimatedCostResult = temporaryEmailPage
+                .waitUntilElementToBeVisible(150)
                 .clickElementOpenEmailLink()
                 .getMessageFromTemporaryEmailService();
-
-        System.out.println(testUser.toString());
 
         Assert.assertTrue(totalCalculatorEstimatedCostResult.contains(totalPostEstimatedCostResult)
                 , "The search result, totalCalculatorEstimatedCostResult contains totalPostEstimatedCostResult");

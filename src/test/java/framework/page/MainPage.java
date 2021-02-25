@@ -1,5 +1,7 @@
 package framework.page;
 
+import framework.model.User;
+import framework.page.pricingcalculator.GoogleCloudPricingCalculatorFrame;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -34,5 +36,27 @@ public class MainPage extends AbstractPageHardcore
 		inputDataField.sendKeys(inputData);
 		inputDataField.submit();
 		return new SearchResultsPage(this.driver);
+	}
+
+	public GoogleCloudPricingCalculatorFrame fillData(User testUser) {
+		    openPage()
+				.search(testUser.getSearchInput())
+				.selectSearchResult(testUser.getSearchResult())
+				.switchToFrameCalculator()
+				.inputNumberOfInstances(testUser.getNumberOfInstances())
+				.inputWhatInstancesFor(testUser.getWhatInstancesFor())
+				.selectOperationSystem(testUser.getOperationSystem())
+				.selectVirtualMachineType(testUser.getVirtualMachineType())
+				.selectInstanceNodeSeries(testUser.getInstanceNodeSeries())
+				.selectInstanceNodeName(testUser.getInstanceNodeName())
+				.clickAddGPUs()
+				.selectNumberOfGPUs(testUser.getNumberOfGPUs())
+				.selectTypeOfGPUs(testUser.getTypeOfGPUs())
+				.selectLocalSSD(testUser.getLocalSSD())
+				.selectDatacenterLocation(testUser.getDatacenterLocation())
+				.selectCommittedUsage(testUser.getCommittedUsage())
+				.clickAddToEstimate();
+		logger.info("Pricing Calculator filled");
+		return new GoogleCloudPricingCalculatorFrame(this.driver);
 	}
 }
