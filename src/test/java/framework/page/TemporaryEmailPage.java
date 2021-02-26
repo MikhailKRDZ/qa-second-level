@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
@@ -47,7 +48,7 @@ public class TemporaryEmailPage extends AbstractPageHardcore {
 
     public TemporaryEmailPage clickElementOpenEmailLink(int waitSecond) {
         Actions actions = new Actions(driver);
-        new WebDriverWait(driver, waitSecond).until(elementToBeClickable(
+        new WebDriverWait(driver, waitSecond).until(ExpectedConditions.visibilityOf(
                 webElementOpenEmailLink));
         actions.moveToElement(webElementOpenEmailLink);
         actions.perform();
