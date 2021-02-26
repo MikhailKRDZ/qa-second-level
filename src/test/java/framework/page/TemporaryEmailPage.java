@@ -9,9 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.IOException;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
@@ -35,10 +32,9 @@ public class TemporaryEmailPage extends AbstractPageHardcore {
     }
 
     public String getTemporaryEmail() {
-        String generatedEmail = "";
-            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(
-                    webElementEmailCopyButton)).click();
-            generatedEmail = String.valueOf(Toolkit.getDefaultToolkit().getSystemClipboard());
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(
+                webElementEmailCopyButton)).click();
+        String generatedEmail = String.valueOf(Toolkit.getDefaultToolkit().getSystemClipboard());
         return generatedEmail;
     }
 
