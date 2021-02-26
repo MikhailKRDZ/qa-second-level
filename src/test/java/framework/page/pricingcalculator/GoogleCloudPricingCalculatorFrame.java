@@ -153,13 +153,12 @@ public class GoogleCloudPricingCalculatorFrame extends GoogleCloudPricingCalcula
         return this;
     }
 
-    public GoogleCloudPricingCalculatorFrame clickAddToEstimate() {
+    public void clickAddToEstimate() {
         webElementAddToEstimateButton.submit();
-        return this;
     }
 
     public String getTotalEstimatedCostResult() {
-        return selectDataFromResultForm("Total Estimated Cost:");
+        return selectDataFromResultForm();
     }
 
     private void inputDataFromSelectMenuContainer(WebElement webElementCurrentValue, String operationSystemData) {
@@ -172,9 +171,9 @@ public class GoogleCloudPricingCalculatorFrame extends GoogleCloudPricingCalcula
                 .click();
     }
 
-    private String selectDataFromResultForm(String elementsName) {
-        WebElement webElement = driver.findElement(By.xpath(String.format(defaultLocatorInResultArea, elementsName)));
-        return webElement.getText().split(elementsName)[1].replaceAll("\\s+", "");
+    private String selectDataFromResultForm() {
+        WebElement webElement = driver.findElement(By.xpath(String.format(defaultLocatorInResultArea, "Total Estimated Cost:")));
+        return webElement.getText().split("Total Estimated Cost:")[1].replaceAll("\\s+", "");
     }
 
     public GoogleCloudPricingCalculatorFrame clickEmailEstimateButton() {
@@ -189,9 +188,8 @@ public class GoogleCloudPricingCalculatorFrame extends GoogleCloudPricingCalcula
         return this;
     }
 
-    public GoogleCloudPricingCalculatorFrame clickSendEmailButton() {
+    public void clickSendEmailButton() {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(
                 webElementEmailInputButton)).click();
-        return this;
     }
 }
