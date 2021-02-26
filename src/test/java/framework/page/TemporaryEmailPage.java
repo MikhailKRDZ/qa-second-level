@@ -4,14 +4,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.IOException;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
@@ -35,10 +33,9 @@ public class TemporaryEmailPage extends AbstractPageHardcore {
     }
 
     public String getTemporaryEmail() {
-        String generatedEmail = "";
-            new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(
-                    webElementEmailCopyButton)).click();
-            generatedEmail = String.valueOf(Toolkit.getDefaultToolkit().getSystemClipboard());
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(elementToBeClickable(
+                webElementEmailCopyButton)).click();
+        String generatedEmail = String.valueOf(Toolkit.getDefaultToolkit().getSystemClipboard());
         return generatedEmail;
     }
 
@@ -49,8 +46,12 @@ public class TemporaryEmailPage extends AbstractPageHardcore {
     }
 
     public TemporaryEmailPage clickElementOpenEmailLink(int waitSecond) {
+        Actions actions = new Actions(driver);
         new WebDriverWait(driver, waitSecond).until(elementToBeClickable(
-                webElementOpenEmailLink)).click();
+                webElementOpenEmailLink));
+        actions.moveToElement(webElementOpenEmailLink);
+        actions.perform();
+        webElementOpenEmailLink.click();
         return this;
     }
 
