@@ -6,11 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="qa-second-level (2)" />
         <module name="qa-second-level" />
+        <module name="qa-second-level (1)" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="qa-second-level" target="8" />
+      <module name="qa-second-level (1)" target="8" />
+      <module name="qa-second-level (2)" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

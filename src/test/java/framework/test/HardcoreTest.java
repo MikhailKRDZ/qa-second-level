@@ -2,10 +2,10 @@ package framework.test;
 
 
 import framework.model.User;
-import framework.service.UserCreator;
 import framework.page.MainPage;
 import framework.page.TemporaryEmailPage;
 import framework.page.pricingcalculator.GoogleCloudPricingCalculatorFrame;
+import framework.service.UserCreator;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -77,7 +77,6 @@ public class HardcoreTest extends CommonConditions {
         driver.switchTo().window(tabs.get(1));
 
         String totalPostEstimatedCostResult = temporaryEmailPage
-//                .waitUntilElementToBeVisible(150)
                 .clickElementOpenEmailLink(150)
                 .getMessageFromTemporaryEmailService();
 
