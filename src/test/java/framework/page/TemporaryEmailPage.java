@@ -48,7 +48,7 @@ public class TemporaryEmailPage extends AbstractPageHardcore {
 
     public TemporaryEmailPage clickElementOpenEmailLink(int waitSecond) {
         Actions actions = new Actions(driver);
-        new WebDriverWait(driver, waitSecond).until(ExpectedConditions.visibilityOf(
+        new WebDriverWait(driver, waitSecond).until(elementToBeClickable(
                 webElementOpenEmailLink));
         actions.moveToElement(webElementOpenEmailLink);
         actions.perform();
